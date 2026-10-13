@@ -1,5 +1,7 @@
 # Wazuup
 
+> *Wazuup* = *"What's up?"*, as in "what's up with this word?"
+
 Select a word or phrase on any page, click the **W** icon, get what it means *in that sentence*.
 Open source, bring your own LLM key. Chrome & Edge.
 

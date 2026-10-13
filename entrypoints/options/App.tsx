@@ -45,7 +45,7 @@ export default function App() {
         <img src="/icons/48.png" alt="" className="size-10" />
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Wazuup</h1>
-          <p className="text-sm text-muted-foreground">Select a word or phrase, get what it means here.</p>
+          <p className="text-sm text-muted-foreground">What's up with this word? Select it and find out.</p>
         </div>
       </div>
 

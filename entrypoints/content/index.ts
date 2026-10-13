@@ -76,7 +76,7 @@ export default defineContentScript({
         const below = e.clientY - rect.top > rect.height / 2;
         const x = Math.min(e.clientX - 13 + GT_OFFSET, innerWidth - ICON - 4) + scrollX;
         const y = (below ? rect.bottom + 1 : rect.top - 1 - ICON) + scrollY;
-        showIcon(x, y, text, contextOf(range, text), rect);
+        showIcon(x, y, text, contextOf(range, text), rect, below);
       });
     });
 
@@ -84,7 +84,7 @@ export default defineContentScript({
     document.addEventListener('mousedown', (e) => { if (!e.composedPath().includes(host)) close(); }, true);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 
-    function showIcon(x: number, y: number, text: string, context: string, rect: DOMRect) {
+    function showIcon(x: number, y: number, text: string, context: string, rect: DOMRect, iconBelow: boolean) {
       if (!host.isConnected) document.documentElement.append(host);
       icon = el('button', 'icon');
       icon.innerHTML = W_SVG;
@@ -97,12 +97,12 @@ export default defineContentScript({
         const at = x;
         icon?.remove();
         icon = null;
-        openPopover(at, text, context, rect);
+        openPopover(at, text, context, rect, iconBelow);
       });
       root.append(icon);
     }
 
-    function openPopover(x: number, text: string, context: string, rect: DOMRect) {
+    function openPopover(x: number, text: string, context: string, rect: DOMRect, iconBelow: boolean) {
       pop = el('div', 'pop');
       pop.setAttribute('role', 'dialog');
       const head = el('div', 'head');
@@ -120,9 +120,11 @@ export default defineContentScript({
       p.style.width = `${width}px`;
       p.style.left = `${Math.max(8, Math.min(x - scrollX - 20, innerWidth - width - 8)) + scrollX}px`;
       const above = innerHeight - rect.bottom < 280 && rect.top > innerHeight - rect.bottom;
+      // Clear the icon row (ours + Google Translate's) when it's on the same side as the popover.
+      const gap = 8 + (above !== iconBelow ? ICON : 0);
       // Re-run as content streams in, so an above-placed popover grows upward.
       const place = () => {
-        p.style.top = `${(above ? rect.top - 8 - p.offsetHeight : rect.bottom + 8) + scrollTop}px`;
+        p.style.top = `${(above ? rect.top - gap - p.offsetHeight : rect.bottom + gap) + scrollTop}px`;
       };
 
       let raw = '';
