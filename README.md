@@ -5,8 +5,6 @@
 Select a word or phrase on any page, click the **W** icon, get what it means *in that sentence*.
 Open source, bring your own LLM key. Chrome & Edge.
 
-The icon sits right next to Google Translate's selection icon, so the two work side by side.
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/popover-dark.png">
   <img src="docs/popover-light.png" alt="Wazuup popover explaining the phrase 'broke the ice' in context" width="720">
