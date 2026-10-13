@@ -7,6 +7,11 @@ Open source, bring your own LLM key. Chrome & Edge.
 
 The icon sits right next to Google Translate's selection icon, so the two work side by side.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/popover-dark.png">
+  <img src="docs/popover-light.png" alt="Wazuup popover explaining the phrase 'broke the ice' in context" width="720">
+</picture>
+
 ## Install (from source)
 
 ```sh
@@ -32,6 +37,8 @@ Anything that speaks the OpenAI `/chat/completions` format works. There are pres
 | Groq | `https://api.groq.com/openai/v1` |
 | Ollama | `http://localhost:11434/v1`, no key needed |
 | LM Studio | `http://localhost:1234/v1`, no key needed |
+
+<img src="docs/settings.png" alt="Wazuup settings page" width="480">
 
 Use a small, fast model. Answers are three short lines. Hit **Test connection** after saving.
 
